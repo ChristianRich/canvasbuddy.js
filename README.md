@@ -56,3 +56,20 @@ Clones a HTMLCanvasElement and returns a new HTMLCanvasElement with same propert
 
 ## isSupported() ##
 Checks for overall canvas and getImageData support. Test will fail if canvas is tainted by cross-domain data
+
+### Usage examples ###
+
+```html
+// Extracts a 100x100 region from a Canvas element and returns an Image element
+var myImage = canvasbuddy.canvasToImage(canvas, 0, 0, 100, 100);
+```
+
+```html
+// Copies the pixels from the current frame of na HTML5VideoElement onto a HTML5CanvasElement
+canvasbuddy.videoToCanvas(video, ctx);
+```
+
+```html
+// Extracts a 100x100 region from a Canvas and returns an ImageData object
+canvasbuddy.getImageData(canvas, 0, 0, 100, 100);
+```
