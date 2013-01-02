@@ -1,10 +1,11 @@
 /**
+* (c) Christian Schlosrich
 * Utility functions to simplify complex Canvas operations like copying pixel data across canvas, video, image and ImageData objects.
 * Please note that these methods:
 * 
-*  1) Are CPU intensive and should not be called on every frame (like in a render / update loop)
-*  2) Will not work if any sources is tainted with cross domain data (an exception is thrown)
-*  3) Will most likely not work on tablets and smart phones since pixel level manipulation has not been fully implemented
+* 1) Are CPU intensive and should not be called on every frame (like in a render / update loop)
+* 2) Will not work if any sources is tainted with cross domain data (an exception is thrown)
+* 3) Will most likely not work on tablets and smart phones since pixel level manipulation has not been fully implemented
 *  
 */
 var canvasbuddy = {
@@ -47,7 +48,7 @@ var canvasbuddy = {
 	/**
 	* Writes the pixels contained in an ImageData object to an HTMLImageElement
 	* @param  {ImageData} imageData 		The image data object
-	* @param  {HTMLImageElement=} image 	Optional HTMLImageElement with containing a 'load' eventlistener (so we can tell when the image is ready)
+	* @param  {HTMLImageElement=} image 	Optional HTMLImageElement (so we can add a 'load' eventlistener to a blank image element)
 	* @return {HTMLImageElement}
 	*/
 	imageDataToImage : function(imageData, image){
@@ -71,11 +72,11 @@ var canvasbuddy = {
 
 	/**
 	* Extracts the current frame of a video and returns an HTMLImageElement (operation will fail if video is tainted with cross domain data)
-	* @param  {HTMLVideoElement} 	The video from where the image should be extracted
-	* @param  {number=} x 			Optional
-	* @param  {number=} y 			Optional
-	* @param  {number=} width 		Optional
-	* @param  {number=} height 		Optional
+	* @param  {HTMLVideoElement} video 	The video from where the image should be extracted
+	* @param  {number=} x 				Optional
+	* @param  {number=} y 				Optional
+	* @param  {number=} width 			Optional
+	* @param  {number=} height 			Optional
 	* @return {HTMLImageElement}
 	*/
 	videoToImage : function(video, x, y, width, height){
@@ -119,12 +120,12 @@ var canvasbuddy = {
 
 	/**
 	* Paints a HTML5ImageElement onto a HTML5CanvasElement
-	* @param  {HTMLCanvasElement} 	Canvas
-	* @param  {HTMLImageElement} 	Image
-	* @param  {number=} x 			Optional
-	* @param  {number=} y 			Optional
-	* @param  {number=} width 		Optional
-	* @param  {number=} height 		Optional
+	* @param  {HTMLCanvasElement} canvas
+	* @param  {HTMLImageElement} image
+	* @param  {number=} x 				Optional
+	* @param  {number=} y 				Optional
+	* @param  {number=} width 			Optional
+	* @param  {number=} height 			Optional
 	* @return {void}
 	*/
 	putImage : function(canvas, image, x, y, width, height){
@@ -139,11 +140,11 @@ var canvasbuddy = {
 
 	/**
 	* Extracts a specified region of a HTMLCanvasElement and returns a base64 encoded string
-	* @param  {HTMLCanvasElement} 	Canvas
-	* @param  {number=} x 			Optional
-	* @param  {number=} y 			Optional
-	* @param  {number=} width 		Optional
-	* @param  {number=} height 		Optional
+	* @param  {HTMLCanvasElement} canvas
+	* @param  {number=} x 				Optional
+	* @param  {number=} y 				Optional
+	* @param  {number=} width 			Optional
+	* @param  {number=} height 			Optional
 	* @return {string}
 	*/
 	getBase64 : function(canvas, x, y, width, height){
@@ -176,7 +177,7 @@ var canvasbuddy = {
 	/**
 	* Converts a base64 encoded string and returns an HTMLImageElement
 	* @param  {string} base64 				A base64 encoded string
-	* @param  {HTMLImageElement=} image 	Optional empty HTMLImageElement with a 'load' event listener attached
+	* @param  {HTMLImageElement=} image 	Optional HTMLImageElement (so we can add a 'load' eventlistener to a blank image element)
 	* @return {HTMLImageElement}
 	*/
 	base64toImage : function(base64, image){
@@ -195,16 +196,16 @@ var canvasbuddy = {
 
 		var i = image || new Image();
 		i.src = mbase64;
-		return image;
+		return i;
 	},
 
 	/**
 	* Returns a cloned canvas cropped to specified dimensions
-	* @param  {HTMLCanvasElement}  	Canvas
-	* @param  {number=} x 			Optional
-	* @param  {number=} y  			Optional
-	* @param  {number=} width 		Optional
-	* @param  {number=} height 		Optional
+	* @param  {HTMLCanvasElement} canvas 	Canvas
+	* @param  {number=} x 					Optional
+	* @param  {number=} y  					Optional
+	* @param  {number=} width 				Optional
+	* @param  {number=} height 				Optional
 	* @return {HTMLCanvasElement}
 	*/
 	crop : function(canvas, x, y, width, height){
@@ -248,7 +249,7 @@ var canvasbuddy = {
 
 	/**
 	* Crops an ImageData object
-	* @param  {ImageData} imageData source to crop
+	* @param  {ImageData} imageData
 	* @param  {number} x
 	* @param  {number} y
 	* @param  {number} width
@@ -268,11 +269,11 @@ var canvasbuddy = {
 
 	/**
 	* Returns the imageData from a HTMLCanvasElement as per specified by the supplied clip rect (clip rect is optional)
-	* @param  {HTMLCanvasElement} 	Canvas
-	* @param  {number=} x 			Optional
-	* @param  {number=} y 			Optional
-	* @param  {number=} width 		Optional
-	* @param  {number=} height 		Optional
+	* @param  {HTMLCanvasElement} canvas
+	* @param  {number=} x 				Optional
+	* @param  {number=} y 				Optional
+	* @param  {number=} width 			Optional
+	* @param  {number=} height 			Optional
 	* @return {ImageData} 
 	*/
 	getImageData : function(canvas, x, y, width, height){
