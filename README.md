@@ -6,9 +6,9 @@ canvasbuddy.js
 The aim of canvasbuddy.js is to simplify complex canvas operations like cropping, copying pixel data across canvas, video, image and ImageData objects.
 Please note that these methods:
  
-1) Are CPU intensive and should not be called on every frame (like in a render / update loop)
-2) Will not work if any sources are tainted with cross domain data (an exception is thrown)
-3) Will most likely not work on tablets and smart phones since pixel level manipulation has not been fully implemented
+* Are CPU intensive and should not be called on every frame (like in a render / update loop)
+* Will not work if any sources are tainted with cross domain data (an exception is thrown)
+* Will most likely not work on tablets and smart phones since pixel level manipulation has not been fully implemented
 
 ### Static API methods ###
 
